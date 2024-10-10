@@ -5,6 +5,7 @@
 .test {
   background-color: #8ACE00;
   color: black;
+  border: 2px solid black;
   margin: 20px;
   padding: 20px;
 }
@@ -13,38 +14,7 @@ table, th, td {
   border: 2px solid black;
   border-collapse: collapse;
 }
-  </style>
-   <title>Sidebar Example</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Times New Roman;
-        }
-        .sidebar {
-            width: 200px;
-            height: 100vh;
-            background-color: #8ACE00;
-            color: black;
-            position: fixed;
-            padding: 20px;
-        }
-        .sidebar a {
-            color: black;
-            text-decoration: none;
-            display: block;
-            padding: 10px 0;
-        }
-        .sidebar a:hover {
-            background-color: #8ACE00;
-        }
-        .content {
-            margin-left: 400px; /* Add some margin to the left for the sidebar */
-            padding: 20px;
-            font-family: Times New Roman;
-          background-color: #8ACE00;
-          
-        }
-    </style>
+</style>
 
 
   
@@ -53,24 +23,34 @@ Axel's Homepage
 </title>
 </head>
 
-  <div class="sidebar">
-    <h2>Axel Kodat</h2>
-    <a href="#link1">Home</a>
-    <a href="#link2">CV</a>
-    <a href="#link3">Research</a>
-</div>
+<body class="test">
+  
+<table>
+<tr>
+<th>
+<a href="index.html">
+Home
+</a>
+</th>
+<th>
+<a href="CV.pdf">
+CV
+</a>
+</th>
+<th>
+<a href="research.html">
+Research
+</a>
+</th>
+</tr>
+</table>
 
- 
 
-
-
-<div class="content">
 <p>
-I'm a PhD student in mathematics at CUNY Graduate Center, working in smooth dynamical systems. My advisor is Enrique Pujals.
+I'm a PhD student in mathematics at CUNY Graduate Center, working in smooth dynamical systems. My advisor is Enrique Pujals. 
 </p>
 <p>
-Since 2023 I have been a graduate student fellow for the CUNY Academy for the Humanities and the Sciences. From 2018-2021 I was an instructor at Brooklyn College.  
+Since 2023 I have been a graduate student fellow for the CUNY Academy for the Humanities and the Sciences. From 2018-2021 I was an instructor at Brooklyn College.
 </p>
-</div>
 </body>
 </html>
