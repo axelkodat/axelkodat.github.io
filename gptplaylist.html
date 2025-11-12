@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Playlist</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      text-align: center;
+    }
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 6px 0;
+      cursor: pointer;
+      color: #0074d9;
+    }
+    li.playing {
+      font-weight: bold;
+      color: #111;
+    }
+  </style>
+</head>
+<body>
+
+<h1>My Playlist</h1>
+<audio id="player" controls></audio>
+
+<ul id="playlist">
+  <li data-src="music/ring_my_bell_midnight.mp3">Track 1</li>
+  <li data-src="music/just_a_gigolo_aint_got_nobody.mp3">Track 2</li>
+  <li data-src="music/stereolab_Surrealchemist.mp3">Track 3</li>
+</ul>
+
+<script>
+  const player = document.getElementById('player');
+  const tracks = document.querySelectorAll('#playlist li');
+  let current = 0;
+
+  function playTrack(index) {
+    tracks.forEach(li => li.classList.remove('playing'));
+    const track = tracks[index];
+    player.src = track.getAttribute('data-src');
+    track.classList.add('playing');
+    player.play();
+  }
+
+  tracks.forEach((li, index) => {
+    li.addEventListener('click', () => playTrack(index));
+  });
+
+  player.addEventListener('ended', () => {
+    current = (current + 1) % tracks.length;
+    playTrack(current);
+  });
+
+  // Start with the first track
+  playTrack(0);
+</script>
+
+</body>
+</html>
