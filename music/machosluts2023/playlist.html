@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>macho sluts 2023</title>
+  <title>macho sluts</title>
   <style>
     body {
       max-width: 900px;
@@ -42,6 +42,14 @@
 
 #player-controls button:hover {
   background: #e8e8e8;
+}
+
+	  #now-playing {
+  flex: 1;
+  text-align: center;
+  font-style: italic;
+  color: #CBC3E3;
+  font-size: 0.95em;
 }
 		
 	  
@@ -215,9 +223,12 @@
 </div>
 
 <script>
-	const player = document.getElementById('player');
-  const tracks = document.querySelectorAll('#playlist li');
-  let current = 0;
+const player = document.getElementById('player');
+const tracks = document.querySelectorAll('#playlist li');
+const nowPlaying = document.getElementById('now-playing');
+const nextBtn = document.getElementById('next');
+const prevBtn = document.getElementById('prev');
+let current = 0;
 	
 function formatTime(seconds) {
   const m = Math.floor(seconds / 60);
@@ -268,7 +279,7 @@ player.addEventListener('timeupdate', () => {
 });
 
 // Start playing first track
-playTrack(0);
+playTrack(current);
 </script>
 
 
