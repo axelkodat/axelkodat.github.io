@@ -260,10 +260,10 @@ prevBtn.addEventListener('click', () => {
 // 🎵 Update progress in label
 player.addEventListener('timeupdate', () => {
   if (!isNaN(player.duration)) {
-    const currentTime = formatTime(player.currentTime);
-    const duration = formatTime(player.duration);
+    /* const currentTime = formatTime(player.currentTime); */
+    /* const duration = formatTime(player.duration); */
     const trackName = tracks[current].textContent;
-    nowPlaying.textContent = `Now playing: ${trackName} — ${currentTime} / ${duration}`;
+    nowPlaying.textContent = ` Now playing: ${trackName} `;
   }
 });
 
