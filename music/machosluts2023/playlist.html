@@ -20,17 +20,8 @@
 		background: #296e24;
  		 padding: 34px;
  		 border-radius: 12px;
- 		 box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+ 		 /* box-shadow: 0 2px 6px rgba(0,0,0,0.1); */
 	}	
-
-	  #now-playing {
-		  flex: 1;
-  font-style: italic;
-  color: #D3D3D3;
-		  font-size: 0.95em;
-  margin-bottom: 8px;
-  text-align: center;
-}
 
 	  #player-controls {
   display: flex;
@@ -59,12 +50,6 @@
       margin-top: 10px;
 		margin-bottom: 10px;
 		 position: sticky;
-  top: 0;
-  background: white; /* keeps it readable when overlapping text */
-  z-index: 10;
-  border-bottom: 1px solid #ddd;
-  padding-top: 6px;
-  padding-bottom: 6px;
     }
 	  
     ul {
@@ -131,9 +116,6 @@
 	<h4 style="font-style: italic;">aug 31, 2023</h4>
 
 <div class="playlist-container">	
-	
-	<div id="now-playing">Now playing: —</div>
-
 	<div id="player-controls">
     <button id="prev">&#9664; Prev</button>
     <div id="now-playing">Now playing: —</div>
@@ -233,6 +215,10 @@
 </div>
 
 <script>
+	const player = document.getElementById('player');
+  const tracks = document.querySelectorAll('#playlist li');
+  let current = 0;
+	
 function formatTime(seconds) {
   const m = Math.floor(seconds / 60);
   const s = Math.floor(seconds % 60);
@@ -282,7 +268,7 @@ player.addEventListener('timeupdate', () => {
 });
 
 // Start playing first track
-playTrack(current);
+playTrack(0);
 </script>
 
 
