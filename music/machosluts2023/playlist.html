@@ -17,7 +17,7 @@
   		text-align: left;          /* but keep internal text left-aligned */
   		/* max-width: 600px;          /* optional, keeps things compact */
 		width: 670px;
-		margin-top: 30px;
+		margin-top: 50px;
  		/* width: 90%; */
 		box-sizing: border-box;
 		background: #222222;
@@ -31,7 +31,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
-	margin-top: 10px;
+	margin-top: 8px;
   gap: 10px;
 }
 
@@ -266,7 +266,7 @@ player.addEventListener('timeupdate', () => {
     /* const currentTime = formatTime(player.currentTime); */
     /* const duration = formatTime(player.duration); */
     const trackName = tracks[current].textContent;
-    nowPlaying.textContent = ` Now playing: ${trackName} `;
+    nowPlaying.textContent = ` Now playing:    ${trackName} `;
   }
 });
 
