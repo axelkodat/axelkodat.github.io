@@ -10,60 +10,81 @@
       text-align: center;
 		color: white;
     }
+
+	.playlist-container {
+  		display: inline-block;     /* allows centering as a block */
+  		text-align: left;          /* but keep internal text left-aligned */
+  		max-width: 400px;          /* optional, keeps things compact */
+ 		width: 100%;
+	}
+
+	  
     audio {
       width: 100%;
       margin-top: 10px;
     }
+	  
     ul {
       list-style: none;
       padding: 0;
     }
+	  
     li {
       margin: 6px 0;
       cursor: pointer;
       color: white;
     }
+	  
     li.playing {
       font-weight: bold;
       color: #FFA929;
     }
+	  
 	li:hover {
       font-weight: bold;
       color: #FA3DB0;
     }
+	  
     a:link {
             color: #FFA929; 
         }
+	  
 	a:visited {
             color: #FFA929; 
         }
+	  
 	a:hover {
             color: #FA3DB0; 
         }
+	  
 	a:active {
             color: #AB32B4; 
         }
+	  
   </style>
 </head>
   
 <body bgcolor="#11861F" leftmargin="35" topmargin="35">
 
 <h2>macho sluts 2023</h2>
-<audio id="player" controls></audio>
 
-<ul id="playlist">
-  <li data-src="08 Dance Of The Fisherman_s Wife.mp3">1. Taras Bulba - Dance Of The Fisherman’s Wife</li>
-  <li data-src="17 She's Lost Control (Long Version).mp3">2. Grace Jones - She's Lost Control (Long Version)</li>
-  <li data-src="03 African Head Charge - Off The Beaten Track.mp3">3. African Head Charge - Off The Beaten Track</li>
-  <li data-src="01 Ashita.mp3">4. Yasuaki Shimizu - Ashita</li>
-  <li data-src="1-17 Bullaby.mp3">5. Bongwater - Bullaby</li>
-  <li data-src="03 Strangers.mp3">6. Portishead - Strangers</li>
-  <li data-src="05 Over.mp3">7. Portishead - Over</li>
-  <li data-src="02 Caramel.mp3">8. Cluster - Caramel</li>
-  <li data-src="Notke.mp3">9. Vladislav Delay - Notke</li>
-  <li data-src="01 Wat Voel Je Nou.mp3">10. De Ambassade - Wat Voel Je Nou</li>
-  <li data-src="03 Illusionist.mp3">11. LA-4A - Illusionist</li>
-  <li data-src="07 Banging the Door.m4a">12. Public Image Ltd. - Banging the Door</li>
+<div class="playlist-container">	
+	
+<audio id="player" controls></audio>
+	<ul id="playlist">
+			
+ 	<li data-src="08 Dance Of The Fisherman_s Wife.mp3">1. Taras Bulba - Dance Of The Fisherman’s Wife</li>
+ 	<li data-src="17 She's Lost Control (Long Version).mp3">2. Grace Jones - She's Lost Control (Long Version)</li>
+	<li data-src="03 African Head Charge - Off The Beaten Track.mp3">3. African Head Charge - Off The Beaten Track</li>
+  	<li data-src="01 Ashita.mp3">4. Yasuaki Shimizu - Ashita</li>
+  	<li data-src="1-17 Bullaby.mp3">5. Bongwater - Bullaby</li>
+  	<li data-src="03 Strangers.mp3">6. Portishead - Strangers</li>
+  	<li data-src="05 Over.mp3">7. Portishead - Over</li>
+  	<li data-src="02 Caramel.mp3">8. Cluster - Caramel</li>
+  	<li data-src="Notke.mp3">9. Vladislav Delay - Notke</li>
+  	<li data-src="01 Wat Voel Je Nou.mp3">10. De Ambassade - Wat Voel Je Nou</li>
+  	<li data-src="03 Illusionist.mp3">11. LA-4A - Illusionist</li>
+  	<li data-src="07 Banging the Door.m4a">12. Public Image Ltd. - Banging the Door</li>
 	
 	<li data-src="tbd.mp3">13. Demdike Stare - Animal Style</li>
 	<li data-src="tbd.mp3">14. Neneh Cherry - Spit Three Times</li>
@@ -136,17 +157,10 @@
 	<li data-src="tbd.mp3">78. Orchestre Tout Puissant Marcel Duchamp - Beginning</li>
 	<li data-src="tbd.mp3">79. Jesu - Walk on Water</li>
 	<li data-src="tbd.mp3">80. Issam Hajali - Ana Damir El Motakallim</li>
-	<li data-src="tbd.mp3">81. Chemise - She Can't Love You</li>
-
-	
-	
-	
-	
+	<li data-src="tbd.mp3">81. Chemise - She Can't Love You</li>	
 </ul>
+</div>
 
-
-
-  
 <script>
   const player = document.getElementById('player');
   const tracks = document.querySelectorAll('#playlist li');
