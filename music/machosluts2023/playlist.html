@@ -17,12 +17,54 @@
   		max-width: 600px;          /* optional, keeps things compact */
  		width: 90%;
 		box-sizing: border-box;
-	}
+		background: #296e24;
+ 		 padding: 34px;
+ 		 border-radius: 12px;
+ 		 box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+	}	
 
+	  #now-playing {
+		  flex: 1;
+  font-style: italic;
+  color: #D3D3D3;
+		  font-size: 0.95em;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+	  #player-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+#player-controls button {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f8f8f8;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#player-controls button:hover {
+  background: #e8e8e8;
+}
+		
 	  
     audio {
       width: 100%;
       margin-top: 10px;
+		margin-bottom: 10px;
+		 position: sticky;
+  top: 0;
+  background: white; /* keeps it readable when overlapping text */
+  z-index: 10;
+  border-bottom: 1px solid #ddd;
+  padding-top: 6px;
+  padding-bottom: 6px;
     }
 	  
     ul {
@@ -89,6 +131,14 @@
 	<h4 style="font-style: italic;">aug 31, 2023</h4>
 
 <div class="playlist-container">	
+	
+	<div id="now-playing">Now playing: —</div>
+
+	<div id="player-controls">
+    <button id="prev">&#9664; Prev</button>
+    <div id="now-playing">Now playing: —</div>
+    <button id="next">Next &#9654;</button>
+  </div>
 	
 <audio id="player" controls></audio>
 	<ul id="playlist">
@@ -183,29 +233,56 @@
 </div>
 
 <script>
-  const player = document.getElementById('player');
-  const tracks = document.querySelectorAll('#playlist li');
-  let current = 0;
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return m + ':' + (s < 10 ? '0' + s : s);
+}
 
-  function playTrack(index) {
-    tracks.forEach(li => li.classList.remove('playing'));
-    const track = tracks[index];
-    player.src = track.getAttribute('data-src');
-    track.classList.add('playing');
-    player.play();
-  }
+function playTrack(index) {
+  tracks.forEach(li => li.classList.remove('playing'));
+  const track = tracks[index];
+  player.src = track.getAttribute('data-src');
+  track.classList.add('playing');
+  player.play();
+  nowPlaying.textContent = "Now playing: " + track.textContent;
+}
 
-  tracks.forEach((li, index) => {
-    li.addEventListener('click', () => playTrack(index));
-  });
-
-  player.addEventListener('ended', () => {
-    current = (current + 1) % tracks.length;
+tracks.forEach((li, index) => {
+  li.addEventListener('click', () => {
+    current = index;
     playTrack(current);
   });
+});
 
-  // Start with the first track
-  playTrack(0);
+player.addEventListener('ended', () => {
+  current = (current + 1) % tracks.length;
+  playTrack(current);
+});
+
+// ⏩ Skip forward/back buttons
+nextBtn.addEventListener('click', () => {
+  current = (current + 1) % tracks.length;
+  playTrack(current);
+});
+
+prevBtn.addEventListener('click', () => {
+  current = (current - 1 + tracks.length) % tracks.length;
+  playTrack(current);
+});
+
+// 🎵 Update progress in label
+player.addEventListener('timeupdate', () => {
+  if (!isNaN(player.duration)) {
+    const currentTime = formatTime(player.currentTime);
+    const duration = formatTime(player.duration);
+    const trackName = tracks[current].textContent;
+    nowPlaying.textContent = `Now playing: ${trackName} — ${currentTime} / ${duration}`;
+  }
+});
+
+// Start playing first track
+playTrack(current);
 </script>
 
 
