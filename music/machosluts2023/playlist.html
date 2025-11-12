@@ -15,7 +15,8 @@
   		display: inline-block;     /* allows centering as a block */
   		text-align: left;          /* but keep internal text left-aligned */
   		max-width: 600px;          /* optional, keeps things compact */
- 		width: 100%;
+ 		width: 90%;
+		box-sizing: border-box;
 	}
 
 	  
@@ -33,17 +34,35 @@
       margin: 6px 0;
       cursor: pointer;
       color: white;
+		font-size: 1.1em;        /* make items easier to tap */
     }
 	  
     li.playing {
       font-weight: bold;
       color: #FFA929;
     }
+
+	li.playing:hover {
+  		color: #BA8E23;
+	}
 	  
 	li:hover {
       font-weight: bold;
       color: #FA3DB0;
     }
+
+	  /* 🪄 Responsive touch-ups */
+@media (max-width: 600px) {
+  body {
+    margin: 20px auto;
+  }
+
+  .playlist-container {
+    width: 95%;              /* nearly full width on small screens */
+    max-width: none;         /* remove fixed limit */
+  }
+
+	/* body font info */
 	  
     a:link {
             color: #FFA929; 
