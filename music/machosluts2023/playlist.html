@@ -249,6 +249,12 @@ player.addEventListener('ended', () => {
   playTrack(current);
 });
 
+player.addEventListener('error', () => {
+  console.warn("Error loading track — skipping to next.");
+  current = (current + 1) % tracks.length;
+  playTrack(current);
+});
+
 // ⏩ Skip forward/back buttons
 nextBtn.addEventListener('click', () => {
   current = (current + 1) % tracks.length;
