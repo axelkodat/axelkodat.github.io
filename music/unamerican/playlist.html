@@ -1,1 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<meta name="robots" content="noindex">
+  <title>unamerican originals</title>
+  <style>
+    body {
+      max-width: 900px;
+      margin: 40px auto;
+      text-align: center;
+		color: white;
+    }
+
+	.playlist-container {
+  		display: inline-block;     /* allows centering as a block */
+  		text-align: left;          /* but keep internal text left-aligned */
+  		/* max-width: 600px;          /* optional, keeps things compact */
+		width: 670px;
+		margin-top: 20px;
+ 		/* width: 90%; */
+		box-sizing: border-box;
+		background: #222222;
+ 		 padding: 34px;
+ 		 border-radius: 12px;
+ 		 /* box-shadow: 0 2px 6px rgba(0,0,0,0.1); */
+	}	
+
+	  #player-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+	margin-top: 2px;
+  gap: 10px;
+}
+
+#player-controls button {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f8f8f8;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#player-controls button:hover {
+  background: #e8e8e8;
+}
+
+	  #now-playing {
+  flex: 1;
+  text-align: center;
+  font-style: italic;
+  color: #FFA929;
+  font-size: 0.95em;
+}
+		
+	  
+    audio {
+      width: 100%;
+      margin-top: 10px;
+		margin-bottom: 20px;
+    }
+	  
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+	  
+    li {
+      margin: 8px 0;
+      cursor: pointer;
+      color: white;
+		font-size: 1.1em;        /* make items easier to tap */
+    }
+	  
+    li.playing {
+      font-weight: bold;
+      color: #FFA929;
+    }
+
+	li.playing:hover {
+  		color: #e35619;
+	}
+	  
+	li:hover {
+      font-weight: 600;
+      color: #FA3DB0;
+    }
+
+	/* body font info */
+	  
+    a:link {
+            color: #FFA929; 
+        }
+	  
+	a:visited {
+            color: #FFA929; 
+        }
+	  
+	a:hover {
+            color: #FA3DB0; 
+        }
+	  
+	a:active {
+            color: #AB32B4; 
+        }
+	  
+  </style>
+</head>
+  
+<body bgcolor=#317149 leftmargin="35" topmargin="35">
+
+<h1 style="color: #FA3DB0; font-weight: 620;">unamerican folk originals</h1>
+
+
+<div class="playlist-container">	
+	<div id="player-controls">
+    <button id="prev">&#9664; Prev</button>
+    <div id="now-playing">Now playing: —</div>
+    <button id="next">Next &#9654;</button>
+  </div>
+	
+<audio id="player" controls></audio>
+	<ul id="playlist">
+			
+ 	<li data-src="08 Dance Of The Fisherman_s Wife.mp3">1. Taras Bulba - Dance Of The Fisherman’s Wife</li>
+
+    
+</ul>
+</div>
+
+<script>
+const player = document.getElementById('player');
+const tracks = document.querySelectorAll('#playlist li');
+const nowPlaying = document.getElementById('now-playing');
+const nextBtn = document.getElementById('next');
+const prevBtn = document.getElementById('prev');
+let current = 0;
+	
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return m + ':' + (s < 10 ? '0' + s : s);
+}
+
+function playTrack(index) {
+  tracks.forEach(li => li.classList.remove('playing'));
+  const track = tracks[index];
+  player.src = track.getAttribute('data-src');
+  track.classList.add('playing');
+  player.play();
+  nowPlaying.textContent = "Now playing: " + track.textContent;
+}
+
+tracks.forEach((li, index) => {
+  li.addEventListener('click', () => {
+    current = index;
+    playTrack(current);
+  });
+});
+
+player.addEventListener('ended', () => {
+  current = (current + 1) % tracks.length;
+  playTrack(current);
+});
+
+player.addEventListener('error', () => {
+  console.warn("Error loading track — skipping to next.");
+  current = (current + 1) % tracks.length;
+  playTrack(current);
+});
+
+// ⏩ Skip forward/back buttons
+nextBtn.addEventListener('click', () => {
+  current = (current + 1) % tracks.length;
+  playTrack(current);
+});
+
+prevBtn.addEventListener('click', () => {
+  current = (current - 1 + tracks.length) % tracks.length;
+  playTrack(current);
+});
+
+// 🎵 Update progress in label
+player.addEventListener('timeupdate', () => {
+  if (!isNaN(player.duration)) {
+    /* const currentTime = formatTime(player.currentTime); */
+    /* const duration = formatTime(player.duration); */
+    const trackName = tracks[current].textContent;
+    nowPlaying.textContent = ` Now playing:    ${trackName} `;
+  }
+});
+
+// Start playing first track
+playTrack(current);
+</script>
+
+
+  
+</body>
+</html>
 
